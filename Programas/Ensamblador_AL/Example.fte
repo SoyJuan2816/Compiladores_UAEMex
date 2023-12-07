@@ -1,0 +1,8 @@
+        org     100h
+        MoV     ax,5
+        mov     bx,2
+        jMp     calc
+back:   jmp     axolote
+calc:   add     ax,bx
+        jmp     back
+stop:   ret

@@ -1,0 +1,6 @@
+si (35 = Hola) entonces
+    read
+    read
+otro
+    read
+finsi
