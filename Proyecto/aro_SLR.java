@@ -1140,7 +1140,7 @@ public class aro_SLR {
 		int z = 0;
 		int w = 0;
 		
-		in = args[0] + ".al";
+		in = args[0] + ".sal";
 		output = args[0] + ".asm";
 
 		if(!xFile(in).exists()){

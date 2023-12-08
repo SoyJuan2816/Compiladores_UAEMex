@@ -526,8 +526,8 @@ public class aro_AL{
 			System.exit(4);
 		}
         
-        inArgs = arguments[0] + ".fte"; // Extension for incoming file
-        outArgs = arguments[0] + ".al"; // Extension for outgoing file
+        inArgs = arguments[0] + ".prg"; // Extension for incoming file
+        outArgs = arguments[0] + ".sal"; // Extension for outgoing file
         
         if(!xFile(inArgs).exists()){
             System.out.println("\7ERROR: El archivo " + inArgs + " no existe");
