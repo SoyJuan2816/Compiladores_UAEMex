@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class aro_STAR_SLR {
+public class aroSLR {
     static String stack[] = new String[1000];
 	static int max = -1; // Limit of the stack
 	
