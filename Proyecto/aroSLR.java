@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.List;
 
-public class aro_SLR {
+public class aroSLR {
     static String stack[] = new String[10000];
 	static int max = -1; // Limit of the stack
 	

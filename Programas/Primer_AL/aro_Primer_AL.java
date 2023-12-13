@@ -128,7 +128,7 @@ public class aro_Primer_AL{
 		System.out.println("Error en el caracter '" + errorChar + "' en el renglón " + Renglon);
 		System.out.println("\n\n\tPresione cualquier tecla para terminar...");
 		pausa();
-		System.exit(0);
+		System.exit(4);
 	}
 	
 

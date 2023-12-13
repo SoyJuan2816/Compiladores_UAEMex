@@ -111,7 +111,7 @@ public class aroAL{
         System.out.println("Error en el caracter '" + errorChar + "' cerca del renglón " + row);
 		System.out.println("\n\n\tPresione cualquier tecla para terminar...");
 		pause();
-		System.exit(0);
+		System.exit(4);
     }
 
     public static boolean is_delim(int x){

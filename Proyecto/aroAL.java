@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
 
-public class aro_AL{
+public class aroAL{
 
     // For file
     static int filesize = 0;
