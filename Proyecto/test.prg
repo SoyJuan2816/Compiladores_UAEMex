@@ -2,16 +2,16 @@
 
 datos
   decimal: a, b, c5
-  decimal: c4, d
+  entero: c4, d
 fin_datos
 {
 	a <- 12.0
 	b <- a*25.0
 	c5 <- (12.0+13.0*b) / 122.0
 	cierto(a>b) haz
-		c4 <- 12.378
+		c4 <- 12
 	falso
-		d <- 2.0
+		d <- 2
 	fin_cond
 
 }

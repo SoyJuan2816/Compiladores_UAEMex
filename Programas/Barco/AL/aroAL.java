@@ -319,7 +319,9 @@ public class aroAL{
                 cwFile(xFile(outArgs), row + "");
             }
         } while (!end_file);
-		
+		cwFile(xFile(outArgs), "eof");
+        cwFile(xFile(outArgs), "eof");
+        cwFile(xFile(outArgs), "666");
         System.out.println("Analizador Lexicográfico terminado\n\n\tPresione cualquier tecla para terminar...");
 		pause();
     }

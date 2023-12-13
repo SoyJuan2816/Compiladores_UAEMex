@@ -21,16 +21,24 @@ public class aroSLR {
 	static String in;
 	
 	// Variables para generación de código
-	static double M_v;
-	static double PC_x;
-	static double PC_y;
-	static double PC_d;
-	static double T_x;
-	static double T_y;
-	static double T_d;
-	static double TP_x;
-	static double TP_y;
-	static double TP_d;
+	static double M_v[] = new double[200];
+	static int tMv = -1;
+	static double PC_x[] = new double[200];
+	static int tPcx = -1;
+	static double PC_y[] = new double[200];
+	static int tPcy = -1;
+	static double PC_d[] = new double[200];
+	static int tPcd = -1;
+	static double T_x[] = new double[200];
+	static int tTx = -1;
+	static double T_y[] = new double[200];
+	static int tTy = -1;
+	static double T_d[] = new double[200];
+	static int tTd = -1;
+
+	static double TempX;
+	static double TempY;
+	static double TempD;
 	
 	static double temp;
 
@@ -86,7 +94,7 @@ public class aroSLR {
 	}
 	
 	public static String pop(){
-		if(max == -1){
+		if(max < 0){
 			System.out.println("stack vacia");
 			System.exit(4);	
 		}
@@ -94,7 +102,7 @@ public class aroSLR {
 	}
 	
 	public static int es_terminal(String X){
-		for(int i = 0; i <= 12; i++){
+		for(int i = 0; i < term.length; i++){
 			if(X.equals(term[i])){
 				return(i);
 			}
@@ -103,7 +111,7 @@ public class aroSLR {
 	}
 	
 	public static int no_terminal(String X){
-		for(int i = 0; i <= 7; i++){
+		for(int i = 0; i < nt.length; i++){
 			if(X.equals(nt[i])){
 				return(i + 13);
 			}
@@ -140,13 +148,13 @@ public class aroSLR {
 			BufferedReader br = new BufferedReader(fr);
 			long NoSirve = br.skip(position);
 			String line = br.readLine();
-			position = position + line.length() + jump;
+			position += line.length() + jump;
 			String XX = line;
 			line = br.readLine();
-			position = position + line.length() + jump;
+			position += line.length() + jump;
 			LEX = line;
 			line = br.readLine();
-			position = position + line.length() + jump;
+			position += line.length() + jump;
 			row = line;
 			fr.close();
 			return(XX);
@@ -169,61 +177,62 @@ public class aroSLR {
 	public static void gen_code_reduce(int Reduce){
 		switch(Reduce){
 			case -1:
-				T_x = PC_x + T_x;
-				T_y = PC_y + T_y;
-				T_d = PC_d + T_d;
+				TempX = PC_x[tPcx--] + T_x[tTx--];
+				T_x[++tTx] = TempX;
+				TempY = PC_y[tPcy--] + T_y[tTy--];
+				T_y[++tTy] = TempY;
+				TempD = PC_d[tPcd--] + T_d[tTd--];
+				T_d[++tTd] = TempD;
 				break;
 			case -2:
-				T_x = PC_x;
-				T_y = PC_y;
-				T_d = PC_d;
+				T_x[++tTx] = PC_x[tPcx--];
+				T_y[++tTy] = PC_y[tPcy--];
+				T_d[++tTd] = PC_d[tPcd--];
 				break;
 			case -3:
-				PC_x = 0;
-				PC_y = M_v;
-				PC_d = M_v;
-				System.out.println("PCx = " + PC_x + ", PCy = " + PC_y + ", PCd = " + PC_d);
-				// pausa();
+				PC_x[++tPcx] = 0;
+				// PC_y[++tPcy] = -1 * M_v[tMv];
+				PC_y[++tPcy] = M_v[tMv];
+				PC_d[++tTd] = M_v[tMv--];
 				break;
 			case -4:
-				PC_x = 0;
-				PC_y = -1 * M_v;
-				PC_d = M_v;
+				PC_x[++tPcx] = 0;
+				// PC_y[++tPcy] = M_v[tMv];
+				PC_y[++tPcy] = -1 * M_v[tMv];
+				PC_d[++tTd] = M_v[tMv--];
 				break;
 			case -5:
-				PC_x = M_v;
-				PC_y = 0;
-				PC_d = M_v;
+				PC_x[++tPcx] = M_v[tMv];
+				PC_y[++tPcy] = 0;
+				PC_d[++tTd] = M_v[tMv--];
 				break;
 			case -6:
-				PC_x = -1 * M_v;
-				PC_y = 0;
-				PC_d = M_v;
+				PC_x[++tPcx] = -1 * M_v[tMv];
+				PC_y[++tPcy] = 0;
+				PC_d[++tTd] = M_v[tMv--];
 				break;
 			case -7:
-				PC_x = M_v;
-				PC_y = M_v;
-				PC_d = M_v * Math.sqrt(2);
+				PC_x[++tPcx] = M_v[tMv];
+				PC_y[++tPcy] = M_v[tMv];
+				PC_d[++tTd] = Math.sqrt(2) * M_v[tMv--];
 				break;
 			case -8:
-				PC_x = M_v;
-				PC_y = -1 * M_v;
-				PC_d = M_v * Math.sqrt(2);
+				PC_x[++tPcx] = M_v[tMv];
+				PC_y[++tPcy] = -1 * M_v[tMv];
+				PC_d[++tTd] = Math.sqrt(2) * M_v[tMv--];
 				break;
 			case -9:
-				PC_x = -1 * M_v;
-				PC_y = M_v;
-				PC_d = M_v * Math.sqrt(2);
+				PC_x[++tPcx] = -1 * M_v[tMv];
+				PC_y[++tPcy] = M_v[tMv];
+				PC_d[++tTd] = Math.sqrt(2) * M_v[tMv--];
 				break;
 			case -10:
-				PC_x = -1 * M_v;
-				PC_y = -1 * M_v;
-				PC_d = M_v * Math.sqrt(2);
+				PC_x[++tPcx] = -1 * M_v[tMv];
+				PC_y[++tPcy] = -1 * M_v[tMv];
+				PC_d[++tTd] = Math.sqrt(2) * M_v[tMv--];
 				break;
 			case -11:
-				M_v = temp;
-				System.out.println("M.v = " + M_v);
-				// pausa();
+				M_v[++tMv] = temp;
 				break;
 		}
 	}

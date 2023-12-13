@@ -28,10 +28,10 @@
 	MUE	b,RB
 	CMPF	RA,RB
 		SMAY	E0
-	MUE	2.0f,d
+	MUE	2e,d
 	SAL	E1
 (E0)	MUE	RC,RC
-	MUE	12.378f,c4
+	MUE	12e,c4
 (E1)	MUE	RC,RC
 	VUEL	0
 	FIN
