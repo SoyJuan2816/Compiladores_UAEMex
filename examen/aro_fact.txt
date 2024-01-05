@@ -1,0 +1,11 @@
+:- dynamic pfact/2.
+
+pfact(nt('L'), [term(id), nt('L\'')]).
+pfact(nt('L\''), [epsilon]).
+pfact(nt('L\''), [term(+), nt('D'), nt('L\'\'')]).
+pfact(nt('L\'\''), [term(-), nt('D')]).
+pfact(nt('L\'\''), [epsilon]).
+pfact(nt('D'), [term('('), nt('D'), term(')')]).
+pfact(nt('D'), [epsilon]).
+pfact(nt('D'), [term(id)]).
+

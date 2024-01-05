@@ -1,0 +1,53 @@
+0) BP --> . B                       goto(0,B)=1
+   B --> . B * B                    goto(0,B)=1
+   B --> . B + B                    goto(0,B)=1
+   B --> . +                        goto(0,+)=2
+   B --> . + A                      goto(0,+)=2
+1) B' --> B .         
+   B --> B . * B                    goto(1,*)=3
+   B --> B . + B                    goto(1,+)=4
+2) B --> + .                     
+   B --> + . A                      goto(2,A)=5
+   A --> . A - B                    goto(2,A)=5
+   A --> . C - A                    goto(2,C)=6
+   A --> . #                        goto(2,#)=7
+   C --> . >                        goto(2,>)=8
+   C --> . <                        goto(2,<)=9
+3) B --> B * . B                    goto(3,B)=10
+   B --> . B * B                    goto(3,B)=10
+   B --> . B + B                    goto(3,B)=10
+   B --> . +                        goto(3,+)=2
+   B --> . + A                      goto(3,+)=2
+4) B --> B + . B                    goto(4,B)=11
+   B --> . B * B                    goto(4,B)=11
+   B --> . B + B                    goto(4,B)=11
+   B --> . +                        goto(4,+)=2
+   B --> . + A                      goto(4,+)=2
+5) B --> + A .                      
+   A --> A . - B                    goto(5,-)=12
+6) A --> C . - A                    goto(6,-)=13
+7) A --> # .
+8) C --> > .
+9) C --> < .
+10) B --> B * B .
+    B --> B . * B                   goto(10,*)=3
+    B --> B . + B                   goto(10,+)=4
+11) B --> B + B .
+    B --> B . * B                   goto(11,*)=3
+    B --> B . + B                   goto(11,+)=4
+12) A --> A - . B                   goto(12,B)=14
+    B --> . B * B                   goto(12,B)=14
+    B --> . B + B                   goto(12,B)=14
+    B --> . +                       goto(12,+)=2
+    B --> . + A                     goto(12,+)=2
+13) A --> C - . A                   goto(13,A)=15
+    A --> . A - B                   goto(13,A)=15
+    A --> . C - A                   goto(13,C)=6
+    A --> . #                       goto(13,#)=7
+    C --> . >                       goto(13,>)=8
+    C --> . <                       goto(13,<)=9
+14) A --> A - B .
+    B --> B . * B                   goto(14,*)=3
+    B --> B . + B                   goto(14,+)=4
+15) A --> C - A .
+    A --> A . - B                   goto(15,-)=12

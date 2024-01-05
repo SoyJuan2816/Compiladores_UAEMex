@@ -1,0 +1,26 @@
+:- dynamic esp_d/2.
+
+esp_d('A', [0]).
+esp_d('B', [3, 1]).
+esp_d('C', [3]).
+esp_d('D', [4, 3, 2, 1]).
+esp_d('E', [4]).
+esp_d('F', [4, 3]).
+
+:- dynamic auto/3.
+
+auto('A', s, 'B').
+auto('B', s, 'C').
+auto('B', t, 'D').
+auto('C', s, 'C').
+auto('C', t, 'E').
+auto('D', s, 'C').
+auto('D', t, 'D').
+auto('D', k, 'F').
+auto('F', s, 'C').
+auto('F', t, 'E').
+
+:- dynamic finales/1.
+
+finales(['F', 'E', 'D']).
+

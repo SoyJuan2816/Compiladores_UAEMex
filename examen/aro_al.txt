@@ -1,0 +1,99 @@
+función DIAGRAMA():
+    a_a <- a_i
+    si (COMIENZO = 0) entonces:
+        COMIENZO <- 4
+    sino si (COMIENZO = 4) entonces:
+        COMIENZO <- 7
+    sino si (COMIENZO = 7) entonces:
+        error
+    finsi
+FinFuncion
+
+función TOKEN():
+    mientras verdadero hacer:
+        si (ESTADO = 0) entonces:
+            c <- lee_car
+            si (c = '#') entonces:
+                ESTADO <- 0
+            sino si (c = '%') entonces:
+                ESTADO <- 1
+            sino:
+                ESTADO <- DIAGRAMA()
+            finsi
+        
+        sino si (ESTADO = 1) entonces:
+            c <- lee_car
+            si (c = '#') entonces:
+                ESTADO <- 1
+            sino si (c = '%') entonces:
+                ESTADO <- 2
+            sino:
+                ESTADO <- 3
+            finsi
+
+        sino si (ESTADO = 2) entonces:
+            Mi_Lexema <- obtener_lexema
+			a_i <- a_a
+            retornar ("num")
+        
+        sino si (ESTADO = 3) entonces:
+            a_a <- a_a - 1
+            Mi_Lexema <- obtener_lexema
+			a_i <- a_a
+            retornar ("sum")
+
+        sino si (ESTADO = 4) entonces:
+            c <- lee_car
+            si (c = 'e') entonces:
+                ESTADO <- 4
+            sino si (C = '#') entonces:
+                ESTADO <- 5
+            sino:
+                ESTADO <- DIAGRAMA()
+            finsi
+
+        sino si (ESTADO = 5) entonces:
+            c <- lee_car
+            si (c = '%') entonces:
+                ESTADO <- 4
+            sino:
+                ESTADO <- 6
+            finsi
+
+        sino si (ESTADO = 6) entonces:
+            a_a <- a_a - 1
+            Mi_Lexema <- obtener_lexema
+			a_i <- a_a
+            retornar ("mul")
+
+        sino si (ESTADO = 7) entonces:
+            c <- lee_car
+            si (c = '+') entonces:
+                ESTADO <- 8
+            sino:
+                ESTADO <- DIAGRAMA()
+            finsi
+
+        sino si (ESTADO = 8) entonces:
+            c <- lee_car
+            si (c = '+') entonces:
+                ESTADO <- 8
+            sino si (c = '-') entonces:
+                ESTADO = 9
+            sino si (c = '>') entonces:
+                ESTADO = 10
+            sino:
+                ESTADO <- DIAGRAMA()
+            finsi
+        
+        sino si (ESTADO = 9) entonces:
+            Mi_Lexema <- obtener_lexema
+			a_i <- a_a
+            retornar ("id")
+
+        sino si (ESTADO = 10) entonces:
+            Mi_Lexema <- obtener_lexema
+			a_i <- a_a
+            retornar ("not")
+        finsi
+FinFuncion
